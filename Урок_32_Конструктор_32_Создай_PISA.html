@@ -1,4 +1,6 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Конструктор №32. Создай PISA</title><style>
+<!DOCTYPE html>
+
+<html lang="ru"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Конструктор №32. Создай</title><style>
 *{box-sizing:border-box}body{margin:0;font-family:"Times New Roman",serif;background:#f4f7fb;color:#172033}
 .wrap{max-width:1180px;margin:auto;padding:22px}.hero{color:white;padding:30px;border-radius:28px;background:linear-gradient(135deg,#123b7a,#6d28d9);position:relative;overflow:hidden}.hero:after{content:"✦  ✧  ✦  ✧  ✦";position:absolute;right:25px;top:25px;font-size:42px;opacity:.25}.tag{display:inline-block;background:#fbbf24;color:#111827;border-radius:999px;padding:7px 13px;font-weight:bold}.hero h1{font-size:34px;margin:14px 0 8px}.mission{font-size:19px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:800px){.grid{grid-template-columns:1fr}}
 .card{background:#fff;border-radius:22px;padding:22px;margin:18px 0;box-shadow:0 8px 25px rgba(30,41,59,.08);border:1px solid #e2e8f0}
@@ -6,94 +8,325 @@
 label.option{display:block;padding:12px;margin:8px 0;background:#eef6ff;border-radius:12px;cursor:pointer;border:1px solid transparent}.option:hover{border-color:#60a5fa}
 input[type=text],textarea{width:100%;padding:12px;border:2px solid #cbd5e1;border-radius:12px;font-size:18px;font-family:inherit}textarea{min-height:90px}
 .btn{border:0;border-radius:13px;padding:13px 18px;font-size:17px;font-weight:bold;cursor:pointer;margin:5px}.check{background:#16a34a;color:white}.retry{background:#f59e0b;color:#111}.send{background:#7c3aed;color:white}.reset{background:#475569;color:white}
+.match-grid{display:grid;gap:10px;margin-top:12px}
+.match-row{display:grid;grid-template-columns:minmax(180px,1fr) minmax(240px,1fr);gap:12px;align-items:center;padding:12px 14px;background:#eef6ff;border:1px solid #cbdff5;border-radius:12px}
+.match-left{font-weight:700;font-size:18px}
+.match-row select{width:100%;padding:10px 12px;border:2px solid #cbd5e1;border-radius:10px;font-size:17px;font-family:inherit;background:#fff}
+@media(max-width:650px){.match-row{grid-template-columns:1fr}.match-row select{width:100%}}
 .feedback{margin-top:10px;min-height:25px;font-weight:bold}.ok{color:#15803d}.bad{color:#b91c1c}.hint{color:#92400e}.locked{opacity:.65}
 .stat{display:flex;gap:10px;flex-wrap:wrap}.stat div{background:#eef2ff;border-radius:15px;padding:12px 16px;font-weight:bold}.progress{height:25px;background:#e2e8f0;border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,#22c55e,#06b6d4);transition:.4s}
 table{border-collapse:collapse;width:100%;background:#fff}th,td{border:1px solid #cbd5e1;padding:9px;text-align:center}th{background:#dbeafe}
 svg{width:100%;max-height:280px;background:#f8fafc;border-radius:18px}.ai{background:#f5f3ff;border:2px dashed #8b5cf6}.ai b{color:#6d28d9}
 .badge2{display:inline-block;background:#dcfce7;color:#166534;border-radius:999px;padding:5px 10px;margin:3px}.world{font-size:14px;opacity:.9}
-.audit-data{border:2px solid #b7ddd5;background:#fbfffe}.data-box{padding:16px;border-radius:14px;background:#eef8f5;border-left:7px solid #238a78;font-size:19px}.challenge{border-left-color:#7650a5!important;background:#fbf9ff}</style></head><body>
+.audit-data{border:2px solid #b7ddd5;background:#fbfffe}.data-box{padding:16px;border-radius:14px;background:#eef8f5;border-left:7px solid #238a78;font-size:19px}.challenge{border-left-color:#7650a5!important;background:#fbf9ff}
+/* ===== БЛОК ДАННЫХ УЧАЩЕГОСЯ ===== */
+.student-info{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:12px;
+  margin:18px 0 22px;
+  padding:16px;
+  border:2px solid #8ab6d6;
+  border-radius:14px;
+  background:linear-gradient(135deg,#f7fbff,#eef7fc);
+}
+.student-info .field{display:flex;flex-direction:column;gap:6px}
+.student-info label{font-weight:700;font-size:.95rem}
+.student-info input{
+  width:100%; box-sizing:border-box; padding:10px 12px;
+  border:1px solid #9fb9c9; border-radius:9px; font-size:1rem;
+  background:#fff;
+}
+.student-info .lesson-field{
+  grid-column:1/-1;
+  display:flex; gap:8px; align-items:center;
+  font-size:.95rem; font-weight:700;
+}
+.student-info .lesson-field input{max-width:110px}
+@media(max-width:700px){
+  .student-info{grid-template-columns:1fr}
+  .student-info .lesson-field{grid-column:auto}
+}
+.student-result{
+  margin-top:16px;padding:14px 16px;border-radius:12px;
+  background:#f6f8fa;border:1px solid #cbd5df;
+}
+.error-list{
+  margin-top:10px;padding:12px;border-radius:10px;
+  background:#fff4f4;border:1px solid #e2aaaa;
+}
+.success-list{
+  margin-top:10px;padding:12px;border-radius:10px;
+  background:#f1fbf4;border:1px solid #a8d5b2;
+}
+
+
+.ai-lab{margin:22px 0;padding:22px;border:3px solid #7c3aed;border-radius:22px;background:linear-gradient(135deg,#faf5ff,#f0f9ff)}
+.ai-lab h2{margin-top:0;color:#5b21b6}
+.ai-prompt{background:#fff;border:2px dashed #8b5cf6;border-radius:16px;padding:16px;font-size:18px;line-height:1.55}
+.ai-area{width:100%;min-height:130px;padding:13px;border:2px solid #c4b5fd;border-radius:12px;font:18px "Times New Roman",serif;margin-top:10px}
+.ai-check{background:#6d28d9;color:#fff;border:0;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer;margin-top:10px}
+.ai-result{margin-top:10px;font-weight:700}
+.expert{margin:22px 0;padding:22px;border-radius:22px;border:3px solid #0f766e;background:#f0fdfa}
+.expert h2{margin-top:0;color:#0f766e}
+.open-review{margin-top:10px;padding:9px 12px;border-radius:10px;background:#fff7ed;color:#9a3412;font-size:15px}
+.diag-note{font-size:15px;color:#475569;margin-top:8px}
+<style>.order-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.order-grid select{padding:11px;border:2px solid #cbd5e1;border-radius:10px;font-size:17px;font-family:inherit;background:#fff}@media(max-width:650px){.order-grid{grid-template-columns:1fr}}</style>
+<style id="pisa-ai-separation">. context{background:#eef7ff;border-left:5px solid #1976d2;padding:10px 12px;border-radius:8px;margin:8px 0}
+. process{font-size:.92em;background:#f5f9ff;padding:8px 12px;border-radius:8px;margin:7px 0}
+. question{font-weight:600;margin-top:8px}
+.ai-separation-note{background:#fff7e6;border-left:5px solid #f0a000;padding:10px 12px;border-radius:8px;margin:8px 0 14px}</style>
+</head><body>
+<div aria-label="Данные учащегося" class="student-info">
+<div class="field">
+<label for="studentName">ФИО учащегося</label>
+<input autocomplete="name" id="studentName" name="studentName" placeholder="Фамилия Имя Отчество" type="text"/>
+</div>
+<div class="field">
+<label for="studentClass">Класс</label>
+<input id="studentClass" name="studentClass" placeholder="5 «А»" type="text"/>
+</div>
+<div class="field">
+<label for="studentDate">Дата</label>
+<input id="studentDate" name="studentDate" type="date"/>
+</div>
+<div class="lesson-field">
+<span>Урок №</span>
+<input id="lessonNumber" name="lessonNumber" readonly="" type="text"/>
+</div>
+</div>
 <div class="wrap">
-<header class="hero"><span class="tag">5 КЛАСС • УРОК 32 / 34</span><div class="world">Конструктор задач</div><h1>Конструктор №32. Создай PISA</h1><div class="mission">🎯 Тема: <b>Создание математического кейса</b><br>🧭 Сегодня ты становишься автором математической задачи.</div></header><div class="card audit-data"><h2>📌 Данные, необходимые для решения</h2><div class="data-box">Автор создаёт PISA-задачу: контекст, минимум 3 числовых данных, вопрос, модель и критерий проверки.</div><p><b>Важно:</b> каждое следующее задание опирается на эти числа, условие или ситуацию. Сначала прочитай данные — потом решай.</p></div>
+<header class="hero"><span class="tag">5 КЛАСС • УРОК 32 / 34</span><div class="world">Конструктор задач</div><h1>Конструктор . ФИНАЛЬНЫЙ ВЫЗОВ №32</h1><div class="mission">🎯 Тема: <b>Создание и проверка математической задачи</b><br/>🧭 Сегодня ты работаешь как исследователь: объясняй решение и проверяй данные.</div></header><div class="card audit-data"><h2>📌 Данные, необходимые для решения</h2><div class="data-box">Конструктор предлагает ситуацию: школьная ярмарка, бюджет 6000 ₸, товары по 450 и 300 ₸. Нужно создать однозначный вопрос, который требует не одного, а двух шагов.</div><p><b>Важно:</b> каждое следующее задание опирается на эти числа, условие или ситуацию. Сначала прочитай данные — потом решай.</p></div>
 <div class="card"><h2>🧩 Игровое поле: работаем с условием и числами</h2><div class="data-box" style="margin:10px 0;background:#fff8e6;border-left-color:#d49b00">
 <b>🔎 Принцип доказательности:</b>
 визуальный материал используется только тогда, когда он является данными для конкретного задания.
 Если в задаче нет необходимости читать график или диаграмму, ученик работает непосредственно с условием, числами, текстом или схемой.
-</div><section class="task" data-num="1" data-type="mc" data-answer="0">
-      <div class="num">Задание 1 • ВЫБОР</div>
-      <div class="q">Что обязательно должно быть в хорошей PISA-задаче?</div><label class="option"><input type="radio" name="q1" value="0"> контекст, достаточные данные и вопрос</label><label class="option"><input type="radio" name="q1" value="1"> только сложные числа</label>
-      <div class="feedback"></div>
-    </section><section class="task" data-num="2" data-type="order" data-answer="Выбрать реальную ситуацию|Собрать данные|Сформулировать вопрос|Проверить однозначность">
-      <div class="num">Задание 2 • АЛГОРИТМ</div>
-      <div class="q">Создание задачи.</div><textarea placeholder="Запиши элементы по порядку через →"></textarea>
-      <div class="feedback"></div>
-    </section><section class="task" data-num="3" data-type="error" data-answer="0">
-      <div class="num">Задание 3 • НАЙДИ ОШИБКУ</div>
-      <div class="q">В задаче нет данных для ответа. Что исправить?</div><label class="option"><input type="radio" name="q3" value="0"> Добавить необходимые данные</label><label class="option"><input type="radio" name="q3" value="1"> Убрать проверку</label>
-      <div class="feedback"></div>
-    </section><section class="task" data-num="4" data-type="input" data-answer="60">
-      <div class="num">Задание 4 • ЧИСЛО</div>
-      <div class="q">4 группы по 15 минут. Сколько минут?</div><input type="text" inputmode="numeric" placeholder="Введи ответ">
-      <div class="feedback"></div>
-    </section><section class="task" data-num="5" data-type="mc" data-answer="0">
-      <div class="num">Задание 5 • ВЫБОР</div>
-      <div class="q">Функциональная задача требует:</div><label class="option"><input type="radio" name="q5" value="0"> применить математику в ситуации</label><label class="option"><input type="radio" name="q5" value="1"> только вычислить</label>
-      <div class="feedback"></div>
-    </section><section class="task" data-num="6" data-type="text" data-answer="">
-      <div class="num">Задание 6 • ОБОСНУЙ</div>
-      <div class="q">Придумай реалистичный вопрос к своим данным.</div><textarea placeholder="Напиши объяснение своими словами..."></textarea>
-      <div class="feedback"></div>
-    </section></div>
+</div><section class="task" data-answer="0" data-num="1" data-type="mc"><div class="num">Задание 1 • ВЫБОР</div><div class="q">Какой вопрос лучше подходит для двухшаговой задачи?</div><label class="option"><input name="q1" type="radio" value="0"/>Купили 4 товара по 450 и 3 по 300. Сколько потратили и сколько осталось?</label><label class="option"><input name="q1" type="radio" value="1"/>Сколько стоит один товар?</label><div class="feedback"></div></section><section class="task" data-answer="1800" data-num="2" data-type="input"><div class="num">Задание 2 • ЧИСЛО</div><div class="q">Сколько стоят 4 товара по 450 ₸?</div><input inputmode="decimal" placeholder="Введи ответ" type="text"/><div class="feedback"></div></section><section class="task" data-answer="1" data-num="3" data-type="mc"><div class="num">Задание 3 • ВЫБОР</div><div class="q">Какой вопрос делает задачу функциональной?</div><label class="option"><input name="q3" type="radio" value="0"/>«Вычисли 2+2»</label><label class="option"><input name="q3" type="radio" value="1"/>«Хватит ли бюджета и что можно докупить?»</label><div class="feedback"></div></section><section class="task" data-answer="ярмарка|6000, 450, 300|хватит ли бюджета" data-num="4" data-type="match"><div class="num">Задание 4 • СООТВЕТСТВИЕ</div><div class="q">Соотнеси элемент задачи.</div><div class="match-grid"><div class="match-row"><div class="match-left">ситуация</div><select aria-label="Соотнеси ситуация"><option value="">— выбери —</option><option value="ярмарка">ярмарка</option><option value="6000, 450, 300">6000, 450, 300</option><option value="хватит ли бюджета">хватит ли бюджета</option></select></div><div class="match-row"><div class="match-left">данные</div><select aria-label="Соотнеси данные"><option value="">— выбери —</option><option value="ярмарка">ярмарка</option><option value="6000, 450, 300">6000, 450, 300</option><option value="хватит ли бюджета">хватит ли бюджета</option></select></div><div class="match-row"><div class="match-left">вопрос</div><select aria-label="Соотнеси вопрос"><option value="">— выбери —</option><option value="ярмарка">ярмарка</option><option value="6000, 450, 300">6000, 450, 300</option><option value="хватит ли бюджета">хватит ли бюджета</option></select></div></div><div class="feedback"></div></section><section class="task" data-answer="Выбрать реальную ситуацию|Дать достаточные данные|Сформулировать вопрос|Проверить однозначность" data-num="5" data-type="order"><div class="num">Задание 5 • АЛГОРИТМ</div><div class="q">Создай качественную подобную задачу.</div><div class="order-grid"><select aria-label="Шаг 1"><option value="">— выбери —</option><option value="Выбрать реальную ситуацию">Выбрать реальную ситуацию</option><option value="Дать достаточные данные">Дать достаточные данные</option><option value="Сформулировать вопрос">Сформулировать вопрос</option><option value="Проверить однозначность">Проверить однозначность</option></select><select aria-label="Шаг 2"><option value="">— выбери —</option><option value="Выбрать реальную ситуацию">Выбрать реальную ситуацию</option><option value="Дать достаточные данные">Дать достаточные данные</option><option value="Сформулировать вопрос">Сформулировать вопрос</option><option value="Проверить однозначность">Проверить однозначность</option></select><select aria-label="Шаг 3"><option value="">— выбери —</option><option value="Выбрать реальную ситуацию">Выбрать реальную ситуацию</option><option value="Дать достаточные данные">Дать достаточные данные</option><option value="Сформулировать вопрос">Сформулировать вопрос</option><option value="Проверить однозначность">Проверить однозначность</option></select><select aria-label="Шаг 4"><option value="">— выбери —</option><option value="Выбрать реальную ситуацию">Выбрать реальную ситуацию</option><option value="Дать достаточные данные">Дать достаточные данные</option><option value="Сформулировать вопрос">Сформулировать вопрос</option><option value="Проверить однозначность">Проверить однозначность</option></select></div><div class="feedback"></div></section><section class="task" data-answer="0" data-num="6" data-type="mc"><div class="num">Задание 6 • ВЫБОР</div><div class="q">Почему вопрос «Что купить?» без ограничений слабый?</div><label class="option"><input name="q6" type="radio" value="0"/>не задаёт критерий выбора</label><label class="option"><input name="q6" type="radio" value="1"/>он слишком математический</label><div class="feedback"></div></section><section class="task" data-answer="300" data-num="7" data-type="input"><div class="num">🧩 Создай задачу • 2 БАЛЛА</div><div class="q"><div class="pisa-context"><b>Реальная ситуация.</b> Используй данные задачи, выбери математическое действие, выполни расчёт и проверь, имеет ли результат смысл в исходной ситуации.</div>
+<div class="pisa-process"><b>:</b> сформулируй → примени математику → интерпретируй результат.</div>
+<div class="pisa-question">Если купить 4×450 и 5×300, сколько останется из 6000?</div></div><input inputmode="decimal" placeholder="Введи ответ" type="text"/><div class="feedback"></div></section><section class="task" data-answer="2" data-num="8" data-type="mc"><div class="num">🧩 Проверь созданную задачу • 2 БАЛЛА</div><div class="q">Что должен проверить автор задачи перед публикацией?</div><label class="option"><input name="q8" type="radio" value="0"/>только дизайн</label><label class="option"><input name="q8" type="radio" value="1"/>только сложность</label><label class="option"><input name="q8" type="radio" value="2"/>достаточность данных, однозначность ответа и реалистичность</label><div class="feedback"></div></section></div>
 <div class="card ai"><h2>🤖 AI-CHECK</h2>
-        <p><b>Правило:</b> сначала реши сам, затем используй ИИ для проверки. Готовый ответ ИИ не считается доказательством.</p>
-        <p><b>Миссия ИИ:</b> Попроси ИИ проверить PISA-задачу на достаточность и однозначность данных.</p></div>
-<div class="card"><h2>🔥 Уровень PISA+ — докажи, а не угадывай</h2><p>Эти два задания добавлены специально, чтобы усилить математическую и функциональную грамотность: требуется перенос данных, несколько шагов или аргументация.</p><section class="task challenge" data-num="7" data-type="text" data-answer=""><div class="num">Задание 7 • УРОВЕНЬ PISA+</div><div class="q">Проверь свою PISA-задачу: есть ли у неё минимум 3 числа? Ответь да/нет и перечисли числа.</div><textarea placeholder="Покажи рассуждение и обоснование"></textarea><button class="btn retry" type="button" onclick="alert('Подсказка: Раздели задачу на известные данные, действие и проверку результата.')">💡 Подсказка</button><div class="feedback"></div></section><section class="task challenge" data-num="8" data-type="text" data-answer=""><div class="num">Задание 8 • УРОВЕНЬ PISA+</div><div class="q">Добавь в задачу один лишний, но реалистичный факт и объясни, зачем он нужен или почему отвлекает.</div><textarea placeholder="Покажи рассуждение и обоснование"></textarea><button class="btn retry" type="button" onclick="alert('Подсказка: Раздели задачу на известные данные, действие и проверку результата.')">💡 Подсказка</button><div class="feedback"></div></section></div><div class="card"><h2>🏆 Твой результат</h2>
-<div class="stat"><div id="score">🏆 Баллы: 0 / 6</div><div id="errors">🔴 Ошибки: 0</div><div id="attempts">↻ Попытки: 0</div></div>
-<p><b>Прогресс:</b></p><div class="progress"><div class="bar" id="bar"></div></div>
+<p><b>Правило:</b> сначала реши сам, затем используй ИИ для проверки. Готовый ответ ИИ не считается доказательством.</p>
+<p><b>ИИ-ЛАБОРАТОРИЯ:</b>Попроси ИИ проверить задачу на достаточность и однозначность данных.</p></div>
+<div class="card"><h2>🔥 Финальный вызов</h2><section class="ai-lab"><h2>🤖 ИИ-ЛАБОРАТОРИЯ</h2><div class="ai-separation-note"><b>Важно:</b>эта лаборатория не является частью задания. Здесь оценивается умение ученика формулировать качественный запрос к ИИ, проверять его ответ и использовать ИИ как инструмент, а не как замену собственному решению.</div><p><b>Оригинальный учебный промт:</b></p><div class="ai-prompt">Ты — помощник ученика 5 класса по теме «Создание и проверка математической задачи». Проанализируй мои данные и решение. Не сообщай ответ сразу: сначала проверь условие, затем вычисления, затем объясни, где могла возникнуть ошибка. Используй только данные из задачи.</div><p><b>Твоя задача:</b> улучши промт так, чтобы ИИ проверял именно математическое рассуждение, а не просто выдавал ответ.</p><textarea class="ai-area" id="aiPrompt32" placeholder="Напиши свой улучшенный промт..."></textarea><button class="ai-check" onclick="checkAIPrompt(32)" type="button">🤖 Проверить качество промта</button><div class="ai-result" id="aiResult32"></div></section><section class="expert"><h2>🧠 ЭКСПЕРТНАЯ ПРОВЕРКА</h2><p>Измени одно условие задачи «Конструктор . ФИНАЛЬНЫЙ ВЫЗОВ №32» так, чтобы ответ изменился. Объясни, почему изменение действительно влияет на решение.</p><div class="diag-note">Задание на аргументацию: автоматический балл не ставится; учитель оценивает доказательность.</div></section></div><div class="card"><h2>🏆 Твой результат</h2>
+<div class="score-legend"><b>Система оценивания — 10 баллов:</b> задания 1–6 — по 1 баллу; задания 7–8 — по 2 балла. За правильное выполнение баллы добавляются автоматически; ошибки можно исправлять повторно. <br/><b>🔥 Финальный вызов — 2 балла.</b> ИИ-лаборатория не входит в 10 баллов.</div><div class="stat"><div id="score">🏆 Баллы: 0 / 10</div><div id="errors">🔴 Ошибки: 0</div><div id="attempts">↻ Попытки: 0</div></div>
+<p><b>Прогресс:</b></p><div class="progress"><div class="bar" id="bar"></div></div><p id="progressText">Проверено заданий: 0 / 8 • Прогресс: 0% • Результат: 0%</p>
 <p id="diag">Диагностика: после проверки здесь появится список ошибок.</p>
-<button class="btn check" onclick="checkAll()">✓ ПРОВЕРИТЬ ВСЁ</button>
+<button class="btn check" id="checkAllBtn" onclick="checkAll()" type="button">✓ ПРОВЕРИТЬ ВСЁ</button>
 <button class="btn retry" onclick="retryErrors()">↻ ПОВТОРИТЬ ОШИБКИ</button>
 <button class="btn send" onclick="sendTeacher()">📩 ОТПРАВИТЬ УЧИТЕЛЮ</button>
 <button class="btn reset" onclick="resetAll()">↺ НАЧАТЬ ЗАНОВО</button>
 </div>
-</div><script>
-const state={right:new Set(),wrong:new Set(),attempts:{}};
-function nrm(s){return String(s||'').trim().replace(/\s+/g,' ').toLowerCase();}
+</div>
+<script>
+const TASK_WEIGHTS = {"1":1,"2":1,"3":1,"4":1,"5":1,"6":1,"7":2,"8":2};
+const state={right:new Set(),wrong:new Set(),attempts:{},hints:0};
+
+function nrm(s){
+  return String(s??'').trim().replace(/\s+/g,' ').toLowerCase()
+    .replace(/[→,;]/g,'|').replace(/\s*\|\s*/g,'|');
+}
 function getVal(el){
- const type=el.dataset.type;
- if(type==='text') return el.querySelector('textarea')?.value||'';
- if(type==='input') return el.querySelector('input')?.value||'';
- const r=el.querySelector('input[type=radio]:checked'); return r?r.value:'';
+  const type=el.dataset.type;
+  if(type==='input') return el.querySelector('input')?.value||'';
+  if(type==='match'||type==='order') return [...el.querySelectorAll('select')].map(s=>s.value).join('|');
+  if(type==='text') return el.querySelector('textarea')?.value||'';
+  const r=el.querySelector('input[type=radio]:checked');
+  return r?r.value:'';
+}
+function numericEqual(a,b){
+  const x=Number(String(a).replace(',','.').trim()), y=Number(String(b).replace(',','.').trim());
+  return Number.isFinite(x)&&Number.isFinite(y)&&Math.abs(x-y)<1e-6;
+}
+function textQuality(value,answer){
+  const v=nrm(value), a=nrm(answer);
+  if(!v) return false;
+  // Open-response task: award the point when the learner includes at least
+  // two meaningful concepts from the model answer.
+  const stop=new Set(['и','в','из','не','это','что','как','по','для','на','данные','показывают']);
+  const words=a.replace(/[^\p{L}\p{N}\s-]/gu,' ').split(/\s+/)
+    .filter(w=>w.length>=5 && !stop.has(w));
+  const hits=words.filter(w=>v.includes(w.slice(0,Math.max(5,w.length-2))));
+  return hits.length>=Math.min(2,words.length);
+}
+function taskIsCorrect(el,value,answer){
+  const type=el.dataset.type;
+  if(type==='input') return numericEqual(value,answer) || nrm(value)===nrm(answer);
+  if(type==='text') return textQuality(value,answer);
+  return nrm(value)===nrm(answer);
 }
 function checkOne(num){
- const el=document.querySelector('.task[data-num="'+num+'"]'); if(!el)return;
- state.attempts[num]=(state.attempts[num]||0)+1;
- const value=getVal(el), answer=el.dataset.answer||'', f=el.querySelector('.feedback');
- let ok=false;
- if(el.dataset.type==='text'){ ok=value.trim().length>=10; }
- else if(el.dataset.type==='order'||el.dataset.type==='match'){ ok=nrm(value)===nrm(answer); }
- else ok=nrm(value)===nrm(answer);
- if(ok){state.right.add(num);state.wrong.delete(num);f.className='feedback ok';f.textContent='🟢 ВЕРНО! Балл засчитан.';}
- else{state.wrong.add(num);state.right.delete(num);f.className='feedback bad';f.innerHTML='🔴 ОШИБКА. Балл не засчитан. <span class="hint">Перечитай условие, используй подсказку и попробуй ещё раз.</span>';}
- update();
+  const el=document.querySelector('.task[data-num="'+num+'"]');
+  if(!el) return false;
+  state.attempts[num]=(state.attempts[num]||0)+1;
+  const value=getVal(el), answer=el.dataset.answer||'', f=el.querySelector('.feedback');
+  const ok=taskIsCorrect(el,value,answer);
+  if(ok){
+    state.right.add(num); state.wrong.delete(num);
+    if(f){f.className='feedback ok';f.textContent='🟢 ВЕРНО! Балл засчитан.';}
+  }else{
+    state.wrong.add(num); state.right.delete(num);
+    if(f){f.className='feedback bad';f.innerHTML='🔴 Пока неверно. Балл не засчитан. <span class="hint">Используй подсказку и попробуй ещё раз.</span>';}
+  }
+  update();
+  return ok;
 }
-function checkAll(){document.querySelectorAll('.task').forEach(e=>checkOne(e.dataset.num));}
+function checkAll(){
+  const tasks=[...document.querySelectorAll('.task')];
+  if(!tasks.length){alert('В этом листе нет заданий для проверки.');return;}
+  tasks.forEach(t=>checkOne(t.dataset.num));
+  const unchecked=tasks.filter(t=>!getVal(t)).length;
+  const box=document.getElementById('diag');
+  if(box && unchecked) box.textContent += ` Не заполнено: ${unchecked} заданий.`;
+  document.querySelector('.card:last-of-type')?.scrollIntoView({behavior:'smooth',block:'center'});
+}
+function getScore(){
+  return [...state.right].reduce((sum,n)=>sum+(TASK_WEIGHTS[n]||1),0);
+}
 function update(){
- const total=document.querySelectorAll('.task').length, r=state.right.size,w=state.wrong.size;
- const attempts=Object.values(state.attempts).reduce((a,b)=>a+b,0);
- document.getElementById('score').textContent=`🏆 Баллы: ${r} / ${total}`;
- document.getElementById('errors').textContent=`🔴 Ошибки: ${w}`;
- document.getElementById('attempts').textContent=`↻ Попытки: ${attempts}`;
- document.getElementById('bar').style.width=(r/total*100)+'%';
- document.getElementById('diag').textContent=w?`Диагностика: ошибки в заданиях ${[...w].join(', ')}. Их можно повторить.`:'Диагностика: ошибок пока нет.';
+  const tasks=[...document.querySelectorAll('.task')];
+  const max=Object.values(TASK_WEIGHTS).reduce((a,b)=>a+b,0);
+  const score=getScore();
+  const wrong=[...state.wrong].sort((a,b)=>+a-+b);
+  const attempts=Object.values(state.attempts).reduce((a,b)=>a+b,0);
+  const checked=Object.keys(state.attempts).length;
+  const pct=Math.round(score/max*100);
+  const donePct=Math.round(checked/tasks.length*100);
+
+  const scoreEl=document.getElementById('score');
+  const errEl=document.getElementById('errors');
+  const attEl=document.getElementById('attempts');
+  const bar=document.getElementById('bar');
+  const diag=document.getElementById('diag');
+  const progressText=document.getElementById('progressText');
+
+  if(scoreEl) scoreEl.textContent=`🏆 Баллы: ${score} / ${max}`;
+  if(errEl) errEl.textContent=`🔴 Ошибки: ${wrong.length}`;
+  if(attEl) attEl.textContent=`↻ Попытки: ${attempts}`;
+  if(bar){bar.style.width=pct+'%';bar.setAttribute('aria-valuenow',String(score));}
+  if(progressText) progressText.textContent=`Проверено заданий: ${checked} / ${tasks.length} • Прогресс: ${donePct}% • Результат: ${pct}%`;
+
+  if(diag){
+    diag.textContent=wrong.length
+      ? `Диагностика: ошибки в заданиях ${wrong.join(', ')}. Исправь их и снова нажми «ПРОВЕРИТЬ ВСЁ».`
+      : checked===tasks.length
+        ? `Диагностика: все задания проверены. Результат ${score}/${max} баллов.`
+        : `Диагностика: после проверки здесь появится список ошибок.`;
+  }
+  if(window.updateStudentResult) window.updateStudentResult(score,max,wrong.map(n=>'Задание '+n),state.hints);
 }
 function retryErrors(){
- const w=[...state.wrong];
- if(!w.length){alert('Ошибок для повторения нет.');return;}
- document.querySelector('.task[data-num="'+w[0]+'"]').scrollIntoView({behavior:'smooth',block:'center'});
+  const w=[...state.wrong];
+  if(!w.length){alert('Ошибок для повторения нет.');return;}
+  const el=document.querySelector('.task[data-num="'+w[0]+'"]');
+  if(el) el.scrollIntoView({behavior:'smooth',block:'center'});
 }
 function resetAll(){location.reload();}
 function sendTeacher(){
- const body=`Результат цифрового листа\\nУрок: Конструктор №32. Создай PISA\\nБаллы: ${state.right.size}/${document.querySelectorAll('.task').length}\\nОшибки: ${state.wrong.size}\\nПопытки: ${JSON.stringify(state.attempts)}\\nОшибочные задания: ${[...state.wrong].join(', ')}`;
- location.href='mailto:?subject='+encodeURIComponent('Результат цифрового листа')+'&body='+encodeURIComponent(body);
+  const max=Object.values(TASK_WEIGHTS).reduce((a,b)=>a+b,0);
+  const body=`Результат цифрового листа
+Урок: ${document.title}
+ФИО: ${document.getElementById('studentName')?.value||'—'}
+Класс: ${document.getElementById('studentClass')?.value||'—'}
+Баллы: ${getScore()}/${max}
+Ошибки: ${state.wrong.size}
+Ошибочные задания: ${[...state.wrong].join(', ')||'нет'}
+Попытки: ${Object.values(state.attempts).reduce((a,b)=>a+b,0)}`;
+  location.href='mailto:?subject='+encodeURIComponent('Результат цифрового листа')+'&body='+encodeURIComponent(body);
 }
-</script></body></html>
+function checkAIPrompt(id){
+  const el=document.getElementById('aiPrompt'+id),out=document.getElementById('aiResult'+id),v=(el?.value||'').toLowerCase();
+  const checks=[
+    /(ты|роль|помощник|эксперт|консультант|аналитик)/.test(v),
+    /(услов|данн|числ|мин|тенг|процент|маршрут|бюджет|код|таблиц|диаграм|врем|цен|книг|измер)/.test(v),
+    /(проверь|сравни|вычисл|объясни|найди|проанализ|реши|определи)/.test(v),
+    /(не давай|не называй|сначала|огранич|не решай|покажи шаг|не сообщай)/.test(v)
+  ];
+  const score=checks.filter(Boolean).length;
+  if(out) out.innerHTML='🤖 Качество промта: '+score+'/4. '+(score===4?'Отлично: есть роль, данные, действие и ограничение.':score>=3?'Хорошо. Добавь недостающий элемент.':'Усиль промт: укажи роль, конкретные данные, действие и ограничение.');
+}
+
+// Robust button binding for local files and GitHub Pages.
+window.checkAll=checkAll;
+window.checkAIPrompt=checkAIPrompt;
+document.addEventListener('DOMContentLoaded',()=>{const b=document.getElementById('checkAllBtn');if(b){b.addEventListener('click',e=>{e.preventDefault();checkAll();});}});
+</script><script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const name = $('studentName'), cls = $('studentClass'),
+        date = $('studentDate'), lesson = $('lessonNumber');
+
+  function inferLesson(){
+    const m = document.title.match(/(?:урок|lesson)\s*№?\s*(\d+)/i)
+           || document.body.innerText.match(/Урок\s*№\s*(\d+)/i);
+    if(m && lesson) lesson.value=m[1];
+  }
+  function load(){
+    try{
+      const s=JSON.parse(localStorage.getItem('math_ai_student')||'{}');
+      if(name) name.value=s.name||'';
+      if(cls) cls.value=s.cls||'';
+      if(date) date.value=s.date||new Date().toISOString().slice(0,10);
+    }catch(e){}
+    inferLesson();
+  }
+  function save(){
+    try{
+      localStorage.setItem('math_ai_student',JSON.stringify({
+        name:name?.value.trim()||'', cls:cls?.value.trim()||'',
+        date:date?.value||''
+      }));
+    }catch(e){}
+  }
+  [name,cls,date].forEach(x=>x&&x.addEventListener('input',save));
+
+  function ensureResult(){
+    let box=$('studentResult');
+    if(!box){
+      box=document.createElement('div');
+      box.id='studentResult'; box.className='student-result';
+      const target=document.querySelector('.result, #result, .results, #results, main');
+      (target||document.body).appendChild(box);
+    }
+    return box;
+  }
+
+  window.updateStudentResult = function(score, maxScore, errors, usedHints){
+    save();
+    const box=ensureResult();
+    const nm=name?.value.trim()||'Не указано';
+    const cl=cls?.value.trim()||'Не указан';
+    const pct=maxScore ? Math.round(score/maxScore*100) : 0;
+    const errHtml=(errors&&errors.length)
+      ? '<div class="error-list"><b>Ошибки для повторной работы:</b><ul>'+
+        errors.map(e=>'<li>'+String(e).replace(/[<>]/g,'')+'</li>').join('')+
+        '</ul></div>'
+      : '<div class="success-list"><b>Ошибок по проверяемым заданиям не обнаружено.</b></div>';
+    box.innerHTML='<b>Результат работы</b><br>'+
+      'ФИО: '+nm+'<br>Класс: '+cl+
+      '<br>Дата: '+(date?.value||'—')+
+      '<br>Урок №: '+(lesson?.value||'—')+
+      '<br><b>Баллы: '+score+' / '+maxScore+' ('+pct+'%)</b>'+
+      '<br>Ошибок: '+(errors?.length||0)+
+      '<br>Подсказки: '+(usedHints||0)+errHtml;
+  };
+
+  // If the page already has a check function, wrap common names so the
+  // student data are always present in the result after checking.
+  ['checkAnswers','checkAll','check','checkQuiz','checkTest','calculateResult'].forEach(fn=>{
+    if(typeof window[fn]==='function' && !window[fn].__studentWrapped){
+      const original=window[fn];
+      const wrapped=function(){
+        const r=original.apply(this,arguments);
+        save();
+        // Do not overwrite an existing detailed result; simply keep identity.
+        return r;
+      };
+      wrapped.__studentWrapped=true;
+      window[fn]=wrapped;
+    }
+  });
+
+  load();
+})();
+</script>
+</body></html>
