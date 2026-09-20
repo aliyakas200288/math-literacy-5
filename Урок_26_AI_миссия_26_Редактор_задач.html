@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-
-<html lang="ru"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>ИИ-ЛАБОРАТОРИЯ №26. Редактор задач</title><style>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI-миссия №26. Редактор задач</title><style>
 *{box-sizing:border-box}body{margin:0;font-family:"Times New Roman",serif;background:#f4f7fb;color:#172033}
 .wrap{max-width:1180px;margin:auto;padding:22px}.hero{color:white;padding:30px;border-radius:28px;background:linear-gradient(135deg,#123b7a,#6d28d9);position:relative;overflow:hidden}.hero:after{content:"✦  ✧  ✦  ✧  ✦";position:absolute;right:25px;top:25px;font-size:42px;opacity:.25}.tag{display:inline-block;background:#fbbf24;color:#111827;border-radius:999px;padding:7px 13px;font-weight:bold}.hero h1{font-size:34px;margin:14px 0 8px}.mission{font-size:19px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:800px){.grid{grid-template-columns:1fr}}
 .card{background:#fff;border-radius:22px;padding:22px;margin:18px 0;box-shadow:0 8px 25px rgba(30,41,59,.08);border:1px solid #e2e8f0}
@@ -8,11 +6,6 @@
 label.option{display:block;padding:12px;margin:8px 0;background:#eef6ff;border-radius:12px;cursor:pointer;border:1px solid transparent}.option:hover{border-color:#60a5fa}
 input[type=text],textarea{width:100%;padding:12px;border:2px solid #cbd5e1;border-radius:12px;font-size:18px;font-family:inherit}textarea{min-height:90px}
 .btn{border:0;border-radius:13px;padding:13px 18px;font-size:17px;font-weight:bold;cursor:pointer;margin:5px}.check{background:#16a34a;color:white}.retry{background:#f59e0b;color:#111}.send{background:#7c3aed;color:white}.reset{background:#475569;color:white}
-.match-grid{display:grid;gap:10px;margin-top:12px}
-.match-row{display:grid;grid-template-columns:minmax(180px,1fr) minmax(240px,1fr);gap:12px;align-items:center;padding:12px 14px;background:#eef6ff;border:1px solid #cbdff5;border-radius:12px}
-.match-left{font-weight:700;font-size:18px}
-.match-row select{width:100%;padding:10px 12px;border:2px solid #cbd5e1;border-radius:10px;font-size:17px;font-family:inherit;background:#fff}
-@media(max-width:650px){.match-row{grid-template-columns:1fr}.match-row select{width:100%}}
 .feedback{margin-top:10px;min-height:25px;font-weight:bold}.ok{color:#15803d}.bad{color:#b91c1c}.hint{color:#92400e}.locked{opacity:.65}
 .stat{display:flex;gap:10px;flex-wrap:wrap}.stat div{background:#eef2ff;border-radius:15px;padding:12px 16px;font-weight:bold}.progress{height:25px;background:#e2e8f0;border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,#22c55e,#06b6d4);transition:.4s}
 table{border-collapse:collapse;width:100%;background:#fff}th,td{border:1px solid #cbd5e1;padding:9px;text-align:center}th{background:#dbeafe}
@@ -60,196 +53,156 @@ svg{width:100%;max-height:280px;background:#f8fafc;border-radius:18px}.ai{backgr
   background:#f1fbf4;border:1px solid #a8d5b2;
 }
 
-
-.ai-lab{margin:22px 0;padding:22px;border:3px solid #7c3aed;border-radius:22px;background:linear-gradient(135deg,#faf5ff,#f0f9ff)}
-.ai-lab h2{margin-top:0;color:#5b21b6}
-.ai-prompt{background:#fff;border:2px dashed #8b5cf6;border-radius:16px;padding:16px;font-size:18px;line-height:1.55}
-.ai-area{width:100%;min-height:130px;padding:13px;border:2px solid #c4b5fd;border-radius:12px;font:18px "Times New Roman",serif;margin-top:10px}
-.ai-check{background:#6d28d9;color:#fff;border:0;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer;margin-top:10px}
-.ai-result{margin-top:10px;font-weight:700}
-.expert{margin:22px 0;padding:22px;border-radius:22px;border:3px solid #0f766e;background:#f0fdfa}
-.expert h2{margin-top:0;color:#0f766e}
-.open-review{margin-top:10px;padding:9px 12px;border-radius:10px;background:#fff7ed;color:#9a3412;font-size:15px}
-.diag-note{font-size:15px;color:#475569;margin-top:8px}
-<style>.order-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.order-grid select{padding:11px;border:2px solid #cbd5e1;border-radius:10px;font-size:17px;font-family:inherit;background:#fff}@media(max-width:650px){.order-grid{grid-template-columns:1fr}}</style>
-<style id="pisa-ai-separation">. context{background:#eef7ff;border-left:5px solid #1976d2;padding:10px 12px;border-radius:8px;margin:8px 0}
-. process{font-size:.92em;background:#f5f9ff;padding:8px 12px;border-radius:8px;margin:7px 0}
-. question{font-weight:600;margin-top:8px}
-.ai-separation-note{background:#fff7e6;border-left:5px solid #f0a000;padding:10px 12px;border-radius:8px;margin:8px 0 14px}</style>
+</style>
+<style id="dml-navigation-style">
+.dml-nav{
+  position:sticky;top:10px;z-index:9999;
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  flex-wrap:wrap;margin:0 0 18px;padding:10px 12px;
+  background:rgba(255,255,255,.96);backdrop-filter:blur(10px);
+  border:1px solid #dbe4f0;border-radius:16px;
+  box-shadow:0 8px 24px rgba(30,41,59,.10);
+  font-family:Arial,sans-serif;
+}
+.dml-nav-left,.dml-nav-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.dml-nav a,.dml-nav button{
+  display:inline-flex;align-items:center;justify-content:center;
+  border:0;text-decoration:none;cursor:pointer;
+  border-radius:11px;padding:9px 13px;font-weight:800;font-size:13px;
+  font-family:Arial,sans-serif;
+}
+.dml-home{background:#eef2ff;color:#4f46e5}
+.dml-start{background:#edf8f2;color:#16754a}
+.dml-done{background:#4f46e5;color:white}
+.dml-done.dml-completed{background:#15945d}
+.dml-label{font-size:12px;color:#64748b;font-weight:800;padding:0 4px}
+.dml-bottom{margin:25px 0 0}
+@media(max-width:620px){
+  .dml-nav{top:4px}
+  .dml-nav a,.dml-nav button{font-size:12px;padding:8px 10px}
+  .dml-label{display:none}
+}
+</style>
 </head><body>
-<div aria-label="Данные учащегося" class="student-info">
-<div class="field">
-<label for="studentName">ФИО учащегося</label>
-<input autocomplete="name" id="studentName" name="studentName" placeholder="Фамилия Имя Отчество" type="text"/>
+<nav class="dml-nav" aria-label="Навигация DIGITAL MATH LAB">
+  <div class="dml-nav-left">
+    <a class="dml-home" href="index.html">🏠 DIGITAL MATH LAB</a>
+    <a class="dml-start" href="Урок_26_старт.html">← К старту урока</a>
+  </div>
+  <div class="dml-nav-right">
+    <span class="dml-label">Урок 26</span>
+    <button class="dml-done" id="dmlDoneBtn" type="button" onclick="dmlMarkDone()">✓ Завершить урок</button>
+  </div>
+</nav>
+
+
+<div class="student-info" aria-label="Данные учащегося">
+  <div class="field">
+    <label for="studentName">ФИО учащегося</label>
+    <input id="studentName" name="studentName" type="text"
+           placeholder="Фамилия Имя Отчество" autocomplete="name">
+  </div>
+  <div class="field">
+    <label for="studentClass">Класс</label>
+    <input id="studentClass" name="studentClass" type="text"
+           placeholder="5 «А»">
+  </div>
+  <div class="field">
+    <label for="studentDate">Дата</label>
+    <input id="studentDate" name="studentDate" type="date">
+  </div>
+  <div class="lesson-field">
+    <span>Урок №</span>
+    <input id="lessonNumber" name="lessonNumber" type="text" readonly>
+  </div>
 </div>
-<div class="field">
-<label for="studentClass">Класс</label>
-<input id="studentClass" name="studentClass" placeholder="5 «А»" type="text"/>
-</div>
-<div class="field">
-<label for="studentDate">Дата</label>
-<input id="studentDate" name="studentDate" type="date"/>
-</div>
-<div class="lesson-field">
-<span>Урок №</span>
-<input id="lessonNumber" name="lessonNumber" readonly="" type="text"/>
-</div>
-</div>
+
 <div class="wrap">
-<header class="hero"><span class="tag">5 КЛАСС • УРОК 26 / 34</span><div class="world">AI Academy</div><h1>ИИ-ЛАБОРАТОРИЯ №26. Редактор задач</h1><div class="mission">🎯 Тема: <b>Недостающие данные и корректность условия</b><br/>🧭 Сегодня ты работаешь как исследователь: объясняй решение и проверяй данные.</div></header><div class="card audit-data"><h2>📌 Данные, необходимые для решения</h2><div class="data-box">Черновик задачи: «Класс купил несколько тетрадей по 180 ₸ и заплатил 1440 ₸. Сколько тетрадей купили?» Редактор должен проверить достаточность данных.</div><p><b>Важно:</b> каждое следующее задание опирается на эти числа, условие или ситуацию. Сначала прочитай данные — потом решай.</p></div>
+<header class="hero"><span class="tag">5 КЛАСС • УРОК 26 / 34</span><div class="world">AI Academy</div><h1>AI-миссия №26. Редактор задач</h1><div class="mission">🎯 Тема: <b>Математическое моделирование</b><br>🧭 Сегодня ты не просишь ИИ решить задачу. Ты проверяешь, задаёшь вопросы и ловишь ошибки.</div></header><div class="card audit-data"><h2>📌 Данные, необходимые для решения</h2><div class="data-box">Задача D: 3 кг яблок по 400 ₸ за кг. В версиях A/B/C не хватает разных данных.</div><p><b>Важно:</b> каждое следующее задание опирается на эти числа, условие или ситуацию. Сначала прочитай данные — потом решай.</p></div>
 <div class="card"><h2>🧩 Игровое поле: работаем с условием и числами</h2><div class="data-box" style="margin:10px 0;background:#fff8e6;border-left-color:#d49b00">
 <b>🔎 Принцип доказательности:</b>
 визуальный материал используется только тогда, когда он является данными для конкретного задания.
 Если в задаче нет необходимости читать график или диаграмму, ученик работает непосредственно с условием, числами, текстом или схемой.
-</div><section class="task" data-answer="8" data-num="1" data-type="input"><div class="num">Задание 1 • ЧИСЛО</div><div class="q">Сколько тетрадей купили?</div><input inputmode="decimal" placeholder="Введи ответ" type="text"/><div class="feedback"></div></section><section class="task" data-answer="1" data-num="2" data-type="mc"><div class="num">Задание 2 • ВЫБОР</div><div class="q">Какая информация здесь не нужна для ответа?</div><label class="option"><input name="q2" type="radio" value="0"/>180 ₸</label><label class="option"><input name="q2" type="radio" value="1"/>цвет тетрадей</label><div class="feedback"></div></section><section class="task" data-answer="0" data-num="3" data-type="mc"><div class="num">Задание 3 • ВЫБОР</div><div class="q">Можно ли решить задачу однозначно?</div><label class="option"><input name="q3" type="radio" value="0"/>да</label><label class="option"><input name="q3" type="radio" value="1"/>нет</label><div class="feedback"></div></section><section class="task" data-answer="цена одной тетради|общая стоимость|количество" data-num="4" data-type="match"><div class="num">Задание 4 • СООТВЕТСТВИЕ</div><div class="q">Соотнеси данные и роль.</div><div class="match-grid"><div class="match-row"><div class="match-left">180 ₸</div><select aria-label="Соотнеси 180 ₸"><option value="">— выбери —</option><option value="цена одной тетради">цена одной тетради</option><option value="общая стоимость">общая стоимость</option><option value="количество">количество</option></select></div><div class="match-row"><div class="match-left">1440 ₸</div><select aria-label="Соотнеси 1440 ₸"><option value="">— выбери —</option><option value="цена одной тетради">цена одной тетради</option><option value="общая стоимость">общая стоимость</option><option value="количество">количество</option></select></div><div class="match-row"><div class="match-left">8</div><select aria-label="Соотнеси 8"><option value="">— выбери —</option><option value="цена одной тетради">цена одной тетради</option><option value="общая стоимость">общая стоимость</option><option value="количество">количество</option></select></div></div><div class="feedback"></div></section><section class="task" data-answer="Найти известные величины|Определить искомое|Выбрать действие|Проверить смысл ответа" data-num="5" data-type="order"><div class="num">Задание 5 • АЛГОРИТМ</div><div class="q">Проверь условие редактора.</div><div class="order-grid"><select aria-label="Шаг 1"><option value="">— выбери —</option><option value="Найти известные величины">Найти известные величины</option><option value="Определить искомое">Определить искомое</option><option value="Выбрать действие">Выбрать действие</option><option value="Проверить смысл ответа">Проверить смысл ответа</option></select><select aria-label="Шаг 2"><option value="">— выбери —</option><option value="Найти известные величины">Найти известные величины</option><option value="Определить искомое">Определить искомое</option><option value="Выбрать действие">Выбрать действие</option><option value="Проверить смысл ответа">Проверить смысл ответа</option></select><select aria-label="Шаг 3"><option value="">— выбери —</option><option value="Найти известные величины">Найти известные величины</option><option value="Определить искомое">Определить искомое</option><option value="Выбрать действие">Выбрать действие</option><option value="Проверить смысл ответа">Проверить смысл ответа</option></select><select aria-label="Шаг 4"><option value="">— выбери —</option><option value="Найти известные величины">Найти известные величины</option><option value="Определить искомое">Определить искомое</option><option value="Выбрать действие">Выбрать действие</option><option value="Проверить смысл ответа">Проверить смысл ответа</option></select></div><div class="feedback"></div></section><section class="task" data-answer="0" data-num="6" data-type="mc"><div class="num">Задание 6 • ВЫБОР</div><div class="q">Если заменить 1440 на 1500, получится целое число тетрадей?</div><label class="option"><input name="q6" type="radio" value="0"/>нет, 1500÷180 не даёт целого числа</label><label class="option"><input name="q6" type="radio" value="1"/>да, 1500÷180=8</label><div class="feedback"></div></section><section class="task" data-answer="1620" data-num="7" data-type="input"><div class="num">🛠️ Улучши решение • 2 БАЛЛА</div><div class="q"><div class="pisa-context"><b>Реальная ситуация.</b> Используй данные задачи, выбери математическое действие, выполни расчёт и проверь, имеет ли результат смысл в исходной ситуации.</div>
-<div class="pisa-process"><b>:</b> сформулируй → примени математику → интерпретируй результат.</div>
-<div class="pisa-question">Какую общую стоимость нужно поставить, чтобы при цене 180 ₸ получилось 9 тетрадей?</div></div><input inputmode="decimal" placeholder="Введи ответ" type="text"/><div class="feedback"></div></section><section class="task" data-answer="2" data-num="8" data-type="mc"><div class="num">🛠️ Отредактируй задачу • 2 БАЛЛА</div><div class="q">Что должен проверить ИИ-редактор?</div><label class="option"><input name="q8" type="radio" value="0"/>только орфографию</label><label class="option"><input name="q8" type="radio" value="1"/>только длину текста</label><label class="option"><input name="q8" type="radio" value="2"/>данные, однозначность и реалистичность ответа</label><div class="feedback"></div></section></div>
+</div><section class="task" data-num="1" data-type="choice" data-answer="0">
+      <div class="num">Задание 1 • МИССИЯ</div>
+      <div class="q">В задаче нет количества товара. Можно ли вычислить стоимость?</div><label class="option"><input type="radio" name="q1" value="0"> Нет</label><label class="option"><input type="radio" name="q1" value="1"> Да</label>
+      <div class="feedback"></div>
+    </section><section class="task" data-num="2" data-type="mc" data-answer="0">
+      <div class="num">Задание 2 • ВЫБОР</div>
+      <div class="q">Если данных не хватает:</div><label class="option"><input type="radio" name="q2" value="0"> нужно уточнить условие</label><label class="option"><input type="radio" name="q2" value="1"> можно придумать</label>
+      <div class="feedback"></div>
+    </section><section class="task" data-num="3" data-type="error" data-answer="0">
+      <div class="num">Задание 3 • НАЙДИ ОШИБКУ</div>
+      <div class="q">Ученик сам придумал количество 7, которого нет в условии.</div><label class="option"><input type="radio" name="q3" value="0"> Недопустимое добавление данных</label><label class="option"><input type="radio" name="q3" value="1"> Правильный шаг</label>
+      <div class="feedback"></div>
+    </section><section class="task" data-num="4" data-type="order" data-answer="Прочитать|Найти данные|Проверить достаточность|Уточнить">
+      <div class="num">Задание 4 • АЛГОРИТМ</div>
+      <div class="q">Редактор задачи.</div><textarea placeholder="Запиши элементы по порядку через →"></textarea>
+      <div class="feedback"></div>
+    </section><section class="task" data-num="5" data-type="input" data-answer="360">
+      <div class="num">Задание 5 • ЧИСЛО</div>
+      <div class="q">Цена 120, количество 3. Стоимость?</div><input type="text" inputmode="numeric" placeholder="Введи ответ">
+      <div class="feedback"></div>
+    </section><section class="task" data-num="6" data-type="text" data-answer="">
+      <div class="num">Задание 6 • ОБОСНУЙ</div>
+      <div class="q">Какое условие нужно добавить, чтобы задача стала однозначной?</div><textarea placeholder="Напиши объяснение своими словами..."></textarea>
+      <div class="feedback"></div>
+    </section></div>
 <div class="card ai"><h2>🤖 AI-CHECK</h2>
-<p><b>Правило:</b> сначала реши сам, затем используй ИИ для проверки. Готовый ответ ИИ не считается доказательством.</p>
-<p><b>ИИ-ЛАБОРАТОРИЯ:</b> Попроси ИИ указать, каких данных не хватает в условии, не решая задачу.</p></div>
-<div class="card"><h2>🔥 Финальный вызов</h2><section class="ai-lab"><h2>🤖 ИИ-ЛАБОРАТОРИЯ</h2><div class="ai-separation-note"><b>Важно:</b>эта лаборатория не является частью задания. Здесь оценивается умение ученика формулировать качественный запрос к ИИ, проверять его ответ и использовать ИИ как инструмент, а не как замену собственному решению.</div><p><b>Оригинальный учебный промт:</b></p><div class="ai-prompt">Ты — помощник ученика 5 класса по теме «Недостающие данные и корректность условия». Проанализируй мои данные и решение. Не сообщай ответ сразу: сначала проверь условие, затем вычисления, затем объясни, где могла возникнуть ошибка. Используй только данные из задачи.</div><p><b>Твоя задача:</b> улучши промт так, чтобы ИИ проверял именно математическое рассуждение, а не просто выдавал ответ.</p><textarea class="ai-area" id="aiPrompt26" placeholder="Напиши свой улучшенный промт..."></textarea><button class="ai-check" onclick="checkAIPrompt(26)" type="button">🤖 Проверить качество промта</button><div class="ai-result" id="aiResult26"></div></section><section class="expert"><h2>🧠 ЭКСПЕРТНАЯ ПРОВЕРКА</h2><p>Измени одно условие задачи «ИИ-ЛАБОРАТОРИЯ №26. Редактор задач» так, чтобы ответ изменился. Объясни, почему изменение действительно влияет на решение.</p><div class="diag-note">Задание на аргументацию: автоматический балл не ставится; учитель оценивает доказательность.</div></section></div><div class="card"><h2>🏆 Твой результат</h2>
-<div class="score-legend"><b>Система оценивания — 10 баллов:</b> задания 1–6 — по 1 баллу; задания 7–8 — по 2 балла. За правильное выполнение баллы добавляются автоматически; ошибки можно исправлять повторно. <br/><b>🔥 Финальный вызов — 2 балла.</b> ИИ-лаборатория не входит в 10 баллов.</div><div class="stat"><div id="score">🏆 Баллы: 0 / 10</div><div id="errors">🔴 Ошибки: 0</div><div id="attempts">↻ Попытки: 0</div></div>
-<p><b>Прогресс:</b></p><div class="progress"><div class="bar" id="bar"></div></div><p id="progressText">Проверено заданий: 0 / 8 • Прогресс: 0% • Результат: 0%</p>
+        <p><b>Правило:</b> сначала реши сам, затем используй ИИ для проверки. Готовый ответ ИИ не считается доказательством.</p>
+        <p><b>Миссия ИИ:</b> Попроси ИИ указать, каких данных не хватает в условии, не решая задачу.</p></div>
+<div class="card"><h2>🔥 Уровень PISA+ — докажи, а не угадывай</h2><p>Эти два задания добавлены специально, чтобы усилить математическую и функциональную грамотность: требуется перенос данных, несколько шагов или аргументация.</p><section class="task challenge" data-num="7" data-type="input" data-answer="1200"><div class="num">Задание 7 • УРОВЕНЬ PISA+</div><div class="q">Реши исправленную задачу D: 3 кг по 400 ₸.</div><input type="text" inputmode="decimal" placeholder="Введи число"><button class="btn retry" type="button" onclick="alert('Подсказка: Раздели задачу на известные данные, действие и проверку результата.')">💡 Подсказка</button><div class="feedback"></div></section><section class="task challenge" data-num="8" data-type="text" data-answer=""><div class="num">Задание 8 • УРОВЕНЬ PISA+</div><div class="q">Объясни, почему версия C «Цена яблок 400» неоднозначна.</div><textarea placeholder="Покажи рассуждение и обоснование"></textarea><button class="btn retry" type="button" onclick="alert('Подсказка: Раздели задачу на известные данные, действие и проверку результата.')">💡 Подсказка</button><div class="feedback"></div></section></div><div class="card"><h2>🏆 Твой результат</h2>
+<div class="stat"><div id="score">🏆 Баллы: 0 / 6</div><div id="errors">🔴 Ошибки: 0</div><div id="attempts">↻ Попытки: 0</div></div>
+<p><b>Прогресс:</b></p><div class="progress"><div class="bar" id="bar"></div></div>
 <p id="diag">Диагностика: после проверки здесь появится список ошибок.</p>
-<button class="btn check" id="checkAllBtn" onclick="checkAll()" type="button">✓ ПРОВЕРИТЬ ВСЁ</button>
+<button class="btn check" onclick="checkAll()">✓ ПРОВЕРИТЬ ВСЁ</button>
 <button class="btn retry" onclick="retryErrors()">↻ ПОВТОРИТЬ ОШИБКИ</button>
 <button class="btn send" onclick="sendTeacher()">📩 ОТПРАВИТЬ УЧИТЕЛЮ</button>
 <button class="btn reset" onclick="resetAll()">↺ НАЧАТЬ ЗАНОВО</button>
 </div>
-</div>
-<script>
-const TASK_WEIGHTS = {"1":1,"2":1,"3":1,"4":1,"5":1,"6":1,"7":2,"8":2};
-const state={right:new Set(),wrong:new Set(),attempts:{},hints:0};
-
-function nrm(s){
-  return String(s??'').trim().replace(/\s+/g,' ').toLowerCase()
-    .replace(/[→,;]/g,'|').replace(/\s*\|\s*/g,'|');
-}
+</div><script>
+const state={right:new Set(),wrong:new Set(),attempts:{}};
+function nrm(s){return String(s||'').trim().replace(/\s+/g,' ').toLowerCase();}
 function getVal(el){
-  const type=el.dataset.type;
-  if(type==='input') return el.querySelector('input')?.value||'';
-  if(type==='match'||type==='order') return [...el.querySelectorAll('select')].map(s=>s.value).join('|');
-  if(type==='text') return el.querySelector('textarea')?.value||'';
-  const r=el.querySelector('input[type=radio]:checked');
-  return r?r.value:'';
-}
-function numericEqual(a,b){
-  const x=Number(String(a).replace(',','.').trim()), y=Number(String(b).replace(',','.').trim());
-  return Number.isFinite(x)&&Number.isFinite(y)&&Math.abs(x-y)<1e-6;
-}
-function textQuality(value,answer){
-  const v=nrm(value), a=nrm(answer);
-  if(!v) return false;
-  // Open-response task: award the point when the learner includes at least
-  // two meaningful concepts from the model answer.
-  const stop=new Set(['и','в','из','не','это','что','как','по','для','на','данные','показывают']);
-  const words=a.replace(/[^\p{L}\p{N}\s-]/gu,' ').split(/\s+/)
-    .filter(w=>w.length>=5 && !stop.has(w));
-  const hits=words.filter(w=>v.includes(w.slice(0,Math.max(5,w.length-2))));
-  return hits.length>=Math.min(2,words.length);
-}
-function taskIsCorrect(el,value,answer){
-  const type=el.dataset.type;
-  if(type==='input') return numericEqual(value,answer) || nrm(value)===nrm(answer);
-  if(type==='text') return textQuality(value,answer);
-  return nrm(value)===nrm(answer);
+ const type=el.dataset.type;
+ if(type==='text') return el.querySelector('textarea')?.value||'';
+ if(type==='input') return el.querySelector('input')?.value||'';
+ const r=el.querySelector('input[type=radio]:checked'); return r?r.value:'';
 }
 function checkOne(num){
-  const el=document.querySelector('.task[data-num="'+num+'"]');
-  if(!el) return false;
-  state.attempts[num]=(state.attempts[num]||0)+1;
-  const value=getVal(el), answer=el.dataset.answer||'', f=el.querySelector('.feedback');
-  const ok=taskIsCorrect(el,value,answer);
-  if(ok){
-    state.right.add(num); state.wrong.delete(num);
-    if(f){f.className='feedback ok';f.textContent='🟢 ВЕРНО! Балл засчитан.';}
-  }else{
-    state.wrong.add(num); state.right.delete(num);
-    if(f){f.className='feedback bad';f.innerHTML='🔴 Пока неверно. Балл не засчитан. <span class="hint">Используй подсказку и попробуй ещё раз.</span>';}
-  }
-  update();
-  return ok;
+ const el=document.querySelector('.task[data-num="'+num+'"]'); if(!el)return;
+ state.attempts[num]=(state.attempts[num]||0)+1;
+ const value=getVal(el), answer=el.dataset.answer||'', f=el.querySelector('.feedback');
+ let ok=false;
+ if(el.dataset.type==='text'){ ok=value.trim().length>=10; }
+ else if(el.dataset.type==='order'||el.dataset.type==='match'){ ok=nrm(value)===nrm(answer); }
+ else ok=nrm(value)===nrm(answer);
+ if(ok){state.right.add(num);state.wrong.delete(num);f.className='feedback ok';f.textContent='🟢 ВЕРНО! Балл засчитан.';}
+ else{state.wrong.add(num);state.right.delete(num);f.className='feedback bad';f.innerHTML='🔴 ОШИБКА. Балл не засчитан. <span class="hint">Перечитай условие, используй подсказку и попробуй ещё раз.</span>';}
+ update();
 }
-function checkAll(){
-  const tasks=[...document.querySelectorAll('.task')];
-  if(!tasks.length){alert('В этом листе нет заданий для проверки.');return;}
-  tasks.forEach(t=>checkOne(t.dataset.num));
-  const unchecked=tasks.filter(t=>!getVal(t)).length;
-  const box=document.getElementById('diag');
-  if(box && unchecked) box.textContent += ` Не заполнено: ${unchecked} заданий.`;
-  document.querySelector('.card:last-of-type')?.scrollIntoView({behavior:'smooth',block:'center'});
-}
-function getScore(){
-  return [...state.right].reduce((sum,n)=>sum+(TASK_WEIGHTS[n]||1),0);
-}
+function checkAll(){document.querySelectorAll('.task').forEach(e=>checkOne(e.dataset.num));}
 function update(){
-  const tasks=[...document.querySelectorAll('.task')];
-  const max=Object.values(TASK_WEIGHTS).reduce((a,b)=>a+b,0);
-  const score=getScore();
-  const wrong=[...state.wrong].sort((a,b)=>+a-+b);
-  const attempts=Object.values(state.attempts).reduce((a,b)=>a+b,0);
-  const checked=Object.keys(state.attempts).length;
-  const pct=Math.round(score/max*100);
-  const donePct=Math.round(checked/tasks.length*100);
-
-  const scoreEl=document.getElementById('score');
-  const errEl=document.getElementById('errors');
-  const attEl=document.getElementById('attempts');
-  const bar=document.getElementById('bar');
-  const diag=document.getElementById('diag');
-  const progressText=document.getElementById('progressText');
-
-  if(scoreEl) scoreEl.textContent=`🏆 Баллы: ${score} / ${max}`;
-  if(errEl) errEl.textContent=`🔴 Ошибки: ${wrong.length}`;
-  if(attEl) attEl.textContent=`↻ Попытки: ${attempts}`;
-  if(bar){bar.style.width=pct+'%';bar.setAttribute('aria-valuenow',String(score));}
-  if(progressText) progressText.textContent=`Проверено заданий: ${checked} / ${tasks.length} • Прогресс: ${donePct}% • Результат: ${pct}%`;
-
-  if(diag){
-    diag.textContent=wrong.length
-      ? `Диагностика: ошибки в заданиях ${wrong.join(', ')}. Исправь их и снова нажми «ПРОВЕРИТЬ ВСЁ».`
-      : checked===tasks.length
-        ? `Диагностика: все задания проверены. Результат ${score}/${max} баллов.`
-        : `Диагностика: после проверки здесь появится список ошибок.`;
-  }
-  if(window.updateStudentResult) window.updateStudentResult(score,max,wrong.map(n=>'Задание '+n),state.hints);
+ const total=document.querySelectorAll('.task').length, r=state.right.size,w=state.wrong.size;
+ const attempts=Object.values(state.attempts).reduce((a,b)=>a+b,0);
+ document.getElementById('score').textContent=`🏆 Баллы: ${r} / ${total}`;
+ document.getElementById('errors').textContent=`🔴 Ошибки: ${w}`;
+ document.getElementById('attempts').textContent=`↻ Попытки: ${attempts}`;
+ document.getElementById('bar').style.width=(r/total*100)+'%';
+ document.getElementById('diag').textContent=w?`Диагностика: ошибки в заданиях ${[...w].join(', ')}. Их можно повторить.`:'Диагностика: ошибок пока нет.';
 }
 function retryErrors(){
-  const w=[...state.wrong];
-  if(!w.length){alert('Ошибок для повторения нет.');return;}
-  const el=document.querySelector('.task[data-num="'+w[0]+'"]');
-  if(el) el.scrollIntoView({behavior:'smooth',block:'center'});
+ const w=[...state.wrong];
+ if(!w.length){alert('Ошибок для повторения нет.');return;}
+ document.querySelector('.task[data-num="'+w[0]+'"]').scrollIntoView({behavior:'smooth',block:'center'});
 }
 function resetAll(){location.reload();}
 function sendTeacher(){
-  const max=Object.values(TASK_WEIGHTS).reduce((a,b)=>a+b,0);
-  const body=`Результат цифрового листа
-Урок: ${document.title}
-ФИО: ${document.getElementById('studentName')?.value||'—'}
-Класс: ${document.getElementById('studentClass')?.value||'—'}
-Баллы: ${getScore()}/${max}
-Ошибки: ${state.wrong.size}
-Ошибочные задания: ${[...state.wrong].join(', ')||'нет'}
-Попытки: ${Object.values(state.attempts).reduce((a,b)=>a+b,0)}`;
-  location.href='mailto:?subject='+encodeURIComponent('Результат цифрового листа')+'&body='+encodeURIComponent(body);
+ const body=`Результат цифрового листа\\nУрок: AI-миссия №26. Редактор задач\\nБаллы: ${state.right.size}/${document.querySelectorAll('.task').length}\\nОшибки: ${state.wrong.size}\\nПопытки: ${JSON.stringify(state.attempts)}\\nОшибочные задания: ${[...state.wrong].join(', ')}`;
+ location.href='mailto:?subject='+encodeURIComponent('Результат цифрового листа')+'&body='+encodeURIComponent(body);
 }
-function checkAIPrompt(id){
-  const el=document.getElementById('aiPrompt'+id),out=document.getElementById('aiResult'+id),v=(el?.value||'').toLowerCase();
-  const checks=[
-    /(ты|роль|помощник|эксперт|консультант|аналитик)/.test(v),
-    /(услов|данн|числ|мин|тенг|процент|маршрут|бюджет|код|таблиц|диаграм|врем|цен|книг|измер)/.test(v),
-    /(проверь|сравни|вычисл|объясни|найди|проанализ|реши|определи)/.test(v),
-    /(не давай|не называй|сначала|огранич|не решай|покажи шаг|не сообщай)/.test(v)
-  ];
-  const score=checks.filter(Boolean).length;
-  if(out) out.innerHTML='🤖 Качество промта: '+score+'/4. '+(score===4?'Отлично: есть роль, данные, действие и ограничение.':score>=3?'Хорошо. Добавь недостающий элемент.':'Усиль промт: укажи роль, конкретные данные, действие и ограничение.');
-}
-
-// Robust button binding for local files and GitHub Pages.
-window.checkAll=checkAll;
-window.checkAIPrompt=checkAIPrompt;
-document.addEventListener('DOMContentLoaded',()=>{const b=document.getElementById('checkAllBtn');if(b){b.addEventListener('click',e=>{e.preventDefault();checkAll();});}});
-</script><script>
+</script>
+<script>
 (function(){
   const $ = id => document.getElementById(id);
   const name = $('studentName'), cls = $('studentClass'),
@@ -327,6 +280,47 @@ document.addEventListener('DOMContentLoaded',()=>{const b=document.getElementByI
   });
 
   load();
+})();
+</script>
+
+<div class="dml-bottom">
+<nav class="dml-nav" aria-label="Навигация DIGITAL MATH LAB">
+  <div class="dml-nav-left">
+    <a class="dml-home" href="index.html">🏠 DIGITAL MATH LAB</a>
+    <a class="dml-start" href="Урок_26_старт.html">← К старту урока</a>
+  </div>
+  <div class="dml-nav-right">
+    <span class="dml-label">Урок 26</span>
+    <button class="dml-done" id="dmlDoneBtn" type="button" onclick="dmlMarkDone()">✓ Завершить урок</button>
+  </div>
+</nav>
+</div>
+<script id="dml-navigation-script">
+(function(){
+  const KEY='digitalMathLabCompleted';
+  const num=26;
+  function done(){
+    try{
+      const a=JSON.parse(localStorage.getItem(KEY)||'[]').map(Number).filter(Boolean);
+      if(!a.includes(num)) a.push(num);
+      localStorage.setItem(KEY,JSON.stringify(a.sort((x,y)=>x-y)));
+    }catch(e){}
+    update();
+  }
+  function update(){
+    let ok=false;
+    try{
+      const a=JSON.parse(localStorage.getItem(KEY)||'[]').map(Number);
+      ok=a.includes(num);
+    }catch(e){}
+    const b=document.getElementById('dmlDoneBtn');
+    if(b){
+      b.classList.toggle('dml-completed',ok);
+      b.textContent=ok?'✓ Урок завершён':'✓ Завершить урок';
+    }
+  }
+  window.dmlMarkDone=done;
+  document.addEventListener('DOMContentLoaded',update);
 })();
 </script>
 </body></html>
