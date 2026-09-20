@@ -8,10 +8,78 @@ input[type=text],textarea{width:100%;padding:12px;border:2px solid #cbd5e1;borde
 .btn{border:0;border-radius:13px;padding:13px 18px;font-size:17px;font-weight:bold;cursor:pointer;margin:5px}.check{background:#16a34a;color:white}.retry{background:#f59e0b;color:#111}.send{background:#7c3aed;color:white}.reset{background:#475569;color:white}
 .feedback{margin-top:10px;min-height:25px;font-weight:bold}.ok{color:#15803d}.bad{color:#b91c1c}.hint{color:#92400e}.locked{opacity:.65}
 .stat{display:flex;gap:10px;flex-wrap:wrap}.stat div{background:#eef2ff;border-radius:15px;padding:12px 16px;font-weight:bold}.progress{height:25px;background:#e2e8f0;border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,#22c55e,#06b6d4);transition:.4s}
+.match-grid{display:grid;gap:10px;margin-top:12px}
+.match-row{display:grid;grid-template-columns:70px 1fr 1fr;gap:10px;align-items:center;padding:10px 12px;background:#eef6ff;border-radius:12px}
+.match-row select{width:100%;padding:10px;border:2px solid #cbd5e1;border-radius:10px;font-size:17px;font-family:inherit;background:#fff}
+@media(max-width:600px){.match-row{grid-template-columns:55px 1fr}.match-row select{grid-column:1/-1}}
 table{border-collapse:collapse;width:100%;background:#fff}th,td{border:1px solid #cbd5e1;padding:9px;text-align:center}th{background:#dbeafe}
 svg{width:100%;max-height:280px;background:#f8fafc;border-radius:18px}.ai{background:#f5f3ff;border:2px dashed #8b5cf6}.ai b{color:#6d28d9}
 .badge2{display:inline-block;background:#dcfce7;color:#166534;border-radius:999px;padding:5px 10px;margin:3px}.world{font-size:14px;opacity:.9}
-.audit-data{border:2px solid #b7ddd5;background:#fbfffe}.data-box{padding:16px;border-radius:14px;background:#eef8f5;border-left:7px solid #238a78;font-size:19px}.challenge{border-left-color:#7650a5!important;background:#fbf9ff}</style></head><body>
+.audit-data{border:2px solid #b7ddd5;background:#fbfffe}.data-box{padding:16px;border-radius:14px;background:#eef8f5;border-left:7px solid #238a78;font-size:19px}.challenge{border-left-color:#7650a5!important;background:#fbf9ff}
+/* ===== БЛОК ДАННЫХ УЧАЩЕГОСЯ ===== */
+.student-info{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:12px;
+  margin:18px 0 22px;
+  padding:16px;
+  border:2px solid #8ab6d6;
+  border-radius:14px;
+  background:linear-gradient(135deg,#f7fbff,#eef7fc);
+}
+.student-info .field{display:flex;flex-direction:column;gap:6px}
+.student-info label{font-weight:700;font-size:.95rem}
+.student-info input{
+  width:100%; box-sizing:border-box; padding:10px 12px;
+  border:1px solid #9fb9c9; border-radius:9px; font-size:1rem;
+  background:#fff;
+}
+.student-info .lesson-field{
+  grid-column:1/-1;
+  display:flex; gap:8px; align-items:center;
+  font-size:.95rem; font-weight:700;
+}
+.student-info .lesson-field input{max-width:110px}
+@media(max-width:700px){
+  .student-info{grid-template-columns:1fr}
+  .student-info .lesson-field{grid-column:auto}
+}
+.student-result{
+  margin-top:16px;padding:14px 16px;border-radius:12px;
+  background:#f6f8fa;border:1px solid #cbd5df;
+}
+.error-list{
+  margin-top:10px;padding:12px;border-radius:10px;
+  background:#fff4f4;border:1px solid #e2aaaa;
+}
+.success-list{
+  margin-top:10px;padding:12px;border-radius:10px;
+  background:#f1fbf4;border:1px solid #a8d5b2;
+}
+
+</style></head><body>
+
+<div class="student-info" aria-label="Данные учащегося">
+  <div class="field">
+    <label for="studentName">ФИО учащегося</label>
+    <input id="studentName" name="studentName" type="text"
+           placeholder="Фамилия Имя Отчество" autocomplete="name">
+  </div>
+  <div class="field">
+    <label for="studentClass">Класс</label>
+    <input id="studentClass" name="studentClass" type="text"
+           placeholder="5 «А»">
+  </div>
+  <div class="field">
+    <label for="studentDate">Дата</label>
+    <input id="studentDate" name="studentDate" type="date">
+  </div>
+  <div class="lesson-field">
+    <span>Урок №</span>
+    <input id="lessonNumber" name="lessonNumber" type="text" readonly>
+  </div>
+</div>
+
 <div class="wrap">
 <header class="hero"><span class="tag">5 КЛАСС • УРОК 1 / 34</span><div class="world">Математическое детективное бюро</div><h1>Дело №1. Пропавшие данные</h1><div class="mission">🎯 Тема: <b>Данные и условие</b><br>🧭 Сегодня ты — математический детектив. Каждое доказательство открывает следующую улику.</div></header><div class="card audit-data"><h2>📌 Данные, необходимые для решения</h2><div class="data-box">В библиотеке за 4 дня выдали 128, 165, 142 и 190 книг. Число читателей: 64, 75, 68 и 82.</div><p><b>Важно:</b> каждое следующее задание опирается на эти числа, условие или ситуацию. Сначала прочитай данные — потом решай.</p></div>
 <div class="card"><h2>🧩 Игровое поле: работаем с условием и числами</h2><div class="data-box" style="margin:10px 0;background:#fff8e6;border-left-color:#d49b00">
@@ -34,9 +102,35 @@ svg{width:100%;max-height:280px;background:#f8fafc;border-radius:18px}.ai{backgr
       <div class="num">Задание 4 • НАЙДИ ОШИБКУ</div>
       <div class="q">Ученик решил 24+7=31. Какую ошибку он допустил?</div><label class="option"><input type="radio" name="q4" value="0"> Выбрал неверное действие</label><label class="option"><input type="radio" name="q4" value="1"> Неверно прочитал числа</label>
       <div class="feedback"></div>
-    </section><section class="task" data-num="5" data-type="match" data-answer="24|было;7|раздали;17|осталось">
+    </section><section class="task" data-num="5" data-type="match" data-answer="было|раздали|осталось">
       <div class="num">Задание 5 • СООТВЕТСТВИЕ</div>
-      <div class="q">Соотнеси.</div><input type="text" placeholder="Запиши пары по порядку">
+      <div class="q">Соотнеси каждое число с его ролью в условии.</div>
+      <div class="match-grid">
+        <div class="match-row"><b>24</b><span>карандашей</span>
+          <select aria-label="Роль числа 24">
+            <option value="">— выбери —</option>
+            <option value="было">было</option>
+            <option value="раздали">раздали</option>
+            <option value="осталось">осталось</option>
+          </select>
+        </div>
+        <div class="match-row"><b>7</b><span>карандашей</span>
+          <select aria-label="Роль числа 7">
+            <option value="">— выбери —</option>
+            <option value="было">было</option>
+            <option value="раздали">раздали</option>
+            <option value="осталось">осталось</option>
+          </select>
+        </div>
+        <div class="match-row"><b>17</b><span>карандашей</span>
+          <select aria-label="Роль числа 17">
+            <option value="">— выбери —</option>
+            <option value="было">было</option>
+            <option value="раздали">раздали</option>
+            <option value="осталось">осталось</option>
+          </select>
+        </div>
+      </div>
       <div class="feedback"></div>
     </section><section class="task" data-num="6" data-type="text" data-answer="">
       <div class="num">Задание 6 • ОБОСНУЙ</div>
@@ -60,6 +154,7 @@ function getVal(el){
  const type=el.dataset.type;
  if(type==='text') return el.querySelector('textarea')?.value||'';
  if(type==='input') return el.querySelector('input')?.value||'';
+ if(type==='match') return [...el.querySelectorAll('select')].map(s=>s.value).join('|');
  const r=el.querySelector('input[type=radio]:checked'); return r?r.value:'';
 }
 function checkOne(num){
@@ -94,4 +189,86 @@ function sendTeacher(){
  const body=`Результат цифрового листа\\nУрок: Дело №1. Пропавшие данные\\nБаллы: ${state.right.size}/${document.querySelectorAll('.task').length}\\nОшибки: ${state.wrong.size}\\nПопытки: ${JSON.stringify(state.attempts)}\\nОшибочные задания: ${[...state.wrong].join(', ')}`;
  location.href='mailto:?subject='+encodeURIComponent('Результат цифрового листа')+'&body='+encodeURIComponent(body);
 }
-</script></body></html>
+</script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const name = $('studentName'), cls = $('studentClass'),
+        date = $('studentDate'), lesson = $('lessonNumber');
+
+  function inferLesson(){
+    const m = document.title.match(/(?:урок|lesson)\s*№?\s*(\d+)/i)
+           || document.body.innerText.match(/Урок\s*№\s*(\d+)/i);
+    if(m && lesson) lesson.value=m[1];
+  }
+  function load(){
+    try{
+      const s=JSON.parse(localStorage.getItem('math_ai_student')||'{}');
+      if(name) name.value=s.name||'';
+      if(cls) cls.value=s.cls||'';
+      if(date) date.value=s.date||new Date().toISOString().slice(0,10);
+    }catch(e){}
+    inferLesson();
+  }
+  function save(){
+    try{
+      localStorage.setItem('math_ai_student',JSON.stringify({
+        name:name?.value.trim()||'', cls:cls?.value.trim()||'',
+        date:date?.value||''
+      }));
+    }catch(e){}
+  }
+  [name,cls,date].forEach(x=>x&&x.addEventListener('input',save));
+
+  function ensureResult(){
+    let box=$('studentResult');
+    if(!box){
+      box=document.createElement('div');
+      box.id='studentResult'; box.className='student-result';
+      const target=document.querySelector('.result, #result, .results, #results, main');
+      (target||document.body).appendChild(box);
+    }
+    return box;
+  }
+
+  window.updateStudentResult = function(score, maxScore, errors, usedHints){
+    save();
+    const box=ensureResult();
+    const nm=name?.value.trim()||'Не указано';
+    const cl=cls?.value.trim()||'Не указан';
+    const pct=maxScore ? Math.round(score/maxScore*100) : 0;
+    const errHtml=(errors&&errors.length)
+      ? '<div class="error-list"><b>Ошибки для повторной работы:</b><ul>'+
+        errors.map(e=>'<li>'+String(e).replace(/[<>]/g,'')+'</li>').join('')+
+        '</ul></div>'
+      : '<div class="success-list"><b>Ошибок по проверяемым заданиям не обнаружено.</b></div>';
+    box.innerHTML='<b>Результат работы</b><br>'+
+      'ФИО: '+nm+'<br>Класс: '+cl+
+      '<br>Дата: '+(date?.value||'—')+
+      '<br>Урок №: '+(lesson?.value||'—')+
+      '<br><b>Баллы: '+score+' / '+maxScore+' ('+pct+'%)</b>'+
+      '<br>Ошибок: '+(errors?.length||0)+
+      '<br>Подсказки: '+(usedHints||0)+errHtml;
+  };
+
+  // If the page already has a check function, wrap common names so the
+  // student data are always present in the result after checking.
+  ['checkAnswers','checkAll','check','checkQuiz','checkTest','calculateResult'].forEach(fn=>{
+    if(typeof window[fn]==='function' && !window[fn].__studentWrapped){
+      const original=window[fn];
+      const wrapped=function(){
+        const r=original.apply(this,arguments);
+        save();
+        // Do not overwrite an existing detailed result; simply keep identity.
+        return r;
+      };
+      wrapped.__studentWrapped=true;
+      window[fn]=wrapped;
+    }
+  });
+
+  load();
+})();
+</script>
+
+</body></html>
