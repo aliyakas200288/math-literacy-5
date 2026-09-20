@@ -1,0 +1,99 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI-миссия №23. Мат-Бот ошибся</title><style>
+*{box-sizing:border-box}body{margin:0;font-family:"Times New Roman",serif;background:#f4f7fb;color:#172033}
+.wrap{max-width:1180px;margin:auto;padding:22px}.hero{color:white;padding:30px;border-radius:28px;background:linear-gradient(135deg,#123b7a,#6d28d9);position:relative;overflow:hidden}.hero:after{content:"✦  ✧  ✦  ✧  ✦";position:absolute;right:25px;top:25px;font-size:42px;opacity:.25}.tag{display:inline-block;background:#fbbf24;color:#111827;border-radius:999px;padding:7px 13px;font-weight:bold}.hero h1{font-size:34px;margin:14px 0 8px}.mission{font-size:19px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:800px){.grid{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:22px;padding:22px;margin:18px 0;box-shadow:0 8px 25px rgba(30,41,59,.08);border:1px solid #e2e8f0}
+.card h2{margin-top:0}.task{border:2px solid #dbeafe;border-left:8px solid #2563eb;border-radius:18px;padding:18px;margin:15px 0;background:#fbfdff}.task[data-type="error"]{border-left-color:#ef4444}.task[data-type="logic"]{border-left-color:#7c3aed}.task[data-type="text"]{border-left-color:#f59e0b}.num{font-weight:bold;color:#1d4ed8;font-size:17px}.q{font-size:19px;margin:9px 0 14px}
+label.option{display:block;padding:12px;margin:8px 0;background:#eef6ff;border-radius:12px;cursor:pointer;border:1px solid transparent}.option:hover{border-color:#60a5fa}
+input[type=text],textarea{width:100%;padding:12px;border:2px solid #cbd5e1;border-radius:12px;font-size:18px;font-family:inherit}textarea{min-height:90px}
+.btn{border:0;border-radius:13px;padding:13px 18px;font-size:17px;font-weight:bold;cursor:pointer;margin:5px}.check{background:#16a34a;color:white}.retry{background:#f59e0b;color:#111}.send{background:#7c3aed;color:white}.reset{background:#475569;color:white}
+.feedback{margin-top:10px;min-height:25px;font-weight:bold}.ok{color:#15803d}.bad{color:#b91c1c}.hint{color:#92400e}.locked{opacity:.65}
+.stat{display:flex;gap:10px;flex-wrap:wrap}.stat div{background:#eef2ff;border-radius:15px;padding:12px 16px;font-weight:bold}.progress{height:25px;background:#e2e8f0;border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,#22c55e,#06b6d4);transition:.4s}
+table{border-collapse:collapse;width:100%;background:#fff}th,td{border:1px solid #cbd5e1;padding:9px;text-align:center}th{background:#dbeafe}
+svg{width:100%;max-height:280px;background:#f8fafc;border-radius:18px}.ai{background:#f5f3ff;border:2px dashed #8b5cf6}.ai b{color:#6d28d9}
+.badge2{display:inline-block;background:#dcfce7;color:#166534;border-radius:999px;padding:5px 10px;margin:3px}.world{font-size:14px;opacity:.9}
+.audit-data{border:2px solid #b7ddd5;background:#fbfffe}.data-box{padding:16px;border-radius:14px;background:#eef8f5;border-left:7px solid #238a78;font-size:19px}.challenge{border-left-color:#7650a5!important;background:#fbf9ff}</style></head><body>
+<div class="wrap">
+<header class="hero"><span class="tag">5 КЛАСС • УРОК 23 / 34</span><div class="world">AI Academy</div><h1>AI-миссия №23. Мат-Бот ошибся</h1><div class="mission">🎯 Тема: <b>Критическая проверка ответа ИИ</b><br>🧭 Сегодня ты не просишь ИИ решить задачу. Ты проверяешь, задаёшь вопросы и ловишь ошибки.</div></header><div class="card audit-data"><h2>📌 Данные, необходимые для решения</h2><div class="data-box">Решения ученика/ИИ: 24×3=72; ученик 72−10=62, ИИ 72−12=60.</div><p><b>Важно:</b> каждое следующее задание опирается на эти числа, условие или ситуацию. Сначала прочитай данные — потом решай.</p></div>
+<div class="card"><h2>🧩 Игровое поле: работаем с условием и числами</h2><div class="data-box" style="margin:10px 0;background:#fff8e6;border-left-color:#d49b00">
+<b>🔎 Принцип доказательности:</b>
+визуальный материал используется только тогда, когда он является данными для конкретного задания.
+Если в задаче нет необходимости читать график или диаграмму, ученик работает непосредственно с условием, числами, текстом или схемой.
+</div><section class="task" data-num="1" data-type="error" data-answer="0">
+      <div class="num">Задание 1 • НАЙДИ ОШИБКУ</div>
+      <div class="q">ИИ утверждает: «25% от 200 = 25».</div><label class="option"><input type="radio" name="q1" value="0"> Ошибка</label><label class="option"><input type="radio" name="q1" value="1"> Верно</label>
+      <div class="feedback"></div>
+    </section><section class="task" data-num="2" data-type="input" data-answer="50">
+      <div class="num">Задание 2 • ЧИСЛО</div>
+      <div class="q">Правильный ответ 25% от 200?</div><input type="text" inputmode="numeric" placeholder="Введи ответ">
+      <div class="feedback"></div>
+    </section><section class="task" data-num="3" data-type="choice" data-answer="0">
+      <div class="num">Задание 3 • МИССИЯ</div>
+      <div class="q">Что сделать после ответа ИИ?</div><label class="option"><input type="radio" name="q3" value="0"> Проверить условие и вычисление</label><label class="option"><input type="radio" name="q3" value="1"> Сразу принять</label>
+      <div class="feedback"></div>
+    </section><section class="task" data-num="4" data-type="order" data-answer="Прочитать ответ ИИ|Сверить условие|Проверить вычисление|Сделать вывод">
+      <div class="num">Задание 4 • АЛГОРИТМ</div>
+      <div class="q">AI-CHECK.</div><textarea placeholder="Запиши элементы по порядку через →"></textarea>
+      <div class="feedback"></div>
+    </section><section class="task" data-num="5" data-type="mc" data-answer="0">
+      <div class="num">Задание 5 • ВЫБОР</div>
+      <div class="q">ИИ может быть:</div><label class="option"><input type="radio" name="q5" value="0"> помощником, который тоже нужно проверять</label><label class="option"><input type="radio" name="q5" value="1"> безошибочным источником</label>
+      <div class="feedback"></div>
+    </section><section class="task" data-num="6" data-type="text" data-answer="">
+      <div class="num">Задание 6 • ОБОСНУЙ</div>
+      <div class="q">Как ты доказал ошибку Мат-Бота?</div><textarea placeholder="Напиши объяснение своими словами..."></textarea>
+      <div class="feedback"></div>
+    </section></div>
+<div class="card ai"><h2>🤖 AI-CHECK</h2>
+        <p><b>Правило:</b> сначала реши сам, затем используй ИИ для проверки. Готовый ответ ИИ не считается доказательством.</p>
+        <p><b>Миссия ИИ:</b> Найди математическую ошибку в ответе ИИ и попроси его объяснить исправление.</p></div>
+<div class="card"><h2>🔥 Уровень PISA+ — докажи, а не угадывай</h2><p>Эти два задания добавлены специально, чтобы усилить математическую и функциональную грамотность: требуется перенос данных, несколько шагов или аргументация.</p><section class="task challenge" data-num="7" data-type="input" data-answer="2"><div class="num">Задание 7 • УРОВЕНЬ PISA+</div><div class="q">Если ученик вместо 72−10 ошибочно сделал 72−12, на сколько отличается результат?</div><input type="text" inputmode="decimal" placeholder="Введи число"><button class="btn retry" type="button" onclick="alert('Подсказка: Раздели задачу на известные данные, действие и проверку результата.')">💡 Подсказка</button><div class="feedback"></div></section><section class="task challenge" data-num="8" data-type="text" data-answer=""><div class="num">Задание 8 • УРОВЕНЬ PISA+</div><div class="q">Напиши вопрос ИИ, который заставит его показать проверку спорного шага.</div><textarea placeholder="Покажи рассуждение и обоснование"></textarea><button class="btn retry" type="button" onclick="alert('Подсказка: Раздели задачу на известные данные, действие и проверку результата.')">💡 Подсказка</button><div class="feedback"></div></section></div><div class="card"><h2>🏆 Твой результат</h2>
+<div class="stat"><div id="score">🏆 Баллы: 0 / 6</div><div id="errors">🔴 Ошибки: 0</div><div id="attempts">↻ Попытки: 0</div></div>
+<p><b>Прогресс:</b></p><div class="progress"><div class="bar" id="bar"></div></div>
+<p id="diag">Диагностика: после проверки здесь появится список ошибок.</p>
+<button class="btn check" onclick="checkAll()">✓ ПРОВЕРИТЬ ВСЁ</button>
+<button class="btn retry" onclick="retryErrors()">↻ ПОВТОРИТЬ ОШИБКИ</button>
+<button class="btn send" onclick="sendTeacher()">📩 ОТПРАВИТЬ УЧИТЕЛЮ</button>
+<button class="btn reset" onclick="resetAll()">↺ НАЧАТЬ ЗАНОВО</button>
+</div>
+</div><script>
+const state={right:new Set(),wrong:new Set(),attempts:{}};
+function nrm(s){return String(s||'').trim().replace(/\s+/g,' ').toLowerCase();}
+function getVal(el){
+ const type=el.dataset.type;
+ if(type==='text') return el.querySelector('textarea')?.value||'';
+ if(type==='input') return el.querySelector('input')?.value||'';
+ const r=el.querySelector('input[type=radio]:checked'); return r?r.value:'';
+}
+function checkOne(num){
+ const el=document.querySelector('.task[data-num="'+num+'"]'); if(!el)return;
+ state.attempts[num]=(state.attempts[num]||0)+1;
+ const value=getVal(el), answer=el.dataset.answer||'', f=el.querySelector('.feedback');
+ let ok=false;
+ if(el.dataset.type==='text'){ ok=value.trim().length>=10; }
+ else if(el.dataset.type==='order'||el.dataset.type==='match'){ ok=nrm(value)===nrm(answer); }
+ else ok=nrm(value)===nrm(answer);
+ if(ok){state.right.add(num);state.wrong.delete(num);f.className='feedback ok';f.textContent='🟢 ВЕРНО! Балл засчитан.';}
+ else{state.wrong.add(num);state.right.delete(num);f.className='feedback bad';f.innerHTML='🔴 ОШИБКА. Балл не засчитан. <span class="hint">Перечитай условие, используй подсказку и попробуй ещё раз.</span>';}
+ update();
+}
+function checkAll(){document.querySelectorAll('.task').forEach(e=>checkOne(e.dataset.num));}
+function update(){
+ const total=document.querySelectorAll('.task').length, r=state.right.size,w=state.wrong.size;
+ const attempts=Object.values(state.attempts).reduce((a,b)=>a+b,0);
+ document.getElementById('score').textContent=`🏆 Баллы: ${r} / ${total}`;
+ document.getElementById('errors').textContent=`🔴 Ошибки: ${w}`;
+ document.getElementById('attempts').textContent=`↻ Попытки: ${attempts}`;
+ document.getElementById('bar').style.width=(r/total*100)+'%';
+ document.getElementById('diag').textContent=w?`Диагностика: ошибки в заданиях ${[...w].join(', ')}. Их можно повторить.`:'Диагностика: ошибок пока нет.';
+}
+function retryErrors(){
+ const w=[...state.wrong];
+ if(!w.length){alert('Ошибок для повторения нет.');return;}
+ document.querySelector('.task[data-num="'+w[0]+'"]').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function resetAll(){location.reload();}
+function sendTeacher(){
+ const body=`Результат цифрового листа\\nУрок: AI-миссия №23. Мат-Бот ошибся\\nБаллы: ${state.right.size}/${document.querySelectorAll('.task').length}\\nОшибки: ${state.wrong.size}\\nПопытки: ${JSON.stringify(state.attempts)}\\nОшибочные задания: ${[...state.wrong].join(', ')}`;
+ location.href='mailto:?subject='+encodeURIComponent('Результат цифрового листа')+'&body='+encodeURIComponent(body);
+}
+</script></body></html>
